@@ -1,0 +1,537 @@
+    1  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    2  echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+    3  curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+    4  echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+    5  sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+    6  kubectl version --client
+    7  minikube kubectl -- get pods -A
+    8  clear
+    9  exit
+   10  sudo apt-update
+   11  sudo apt-get update
+   12  sudo apt update
+   13  sudo apt-get upgrade
+   14  clear
+   15  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+   16  sudo install minikube-linux-amd64 /usr/local/bin/minikube
+   17  minikube start
+   18  minikube start --driver=docker
+   19  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+   20  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+   21    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   22  sudo apt-get update
+   23  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   24  systemctl status docker
+   25  minikube start
+   26  sudo usermod -aG docker ubuntu && newgrp docker
+   27  exit
+   28  clear
+   29  kubectl
+   30  minikube
+   31  clear
+   32  minikube start --vm-driver=docker
+   33  get nodes
+   34  kubectl get nodes
+   35  minikube status
+   36  kubectl version
+   37  kubectl get pod
+   38  kubectl get services
+   39  kubectl create
+   40  clear
+   41  kubectl create deployment nginx-depl --images=nginx
+   42  kubectl create deployment nginx-depl --image=nginx
+   43  kubectl get deployment
+   44  kobectl get pod
+   45  kubectl get pod
+   46  kubectl get replicaset
+   47  kubectl edit deployment nginx-depl
+   48  kubectl get pod
+   49  kubectl edit deployment nginx-depl
+   50  kubectl get pod
+   51  kubectl create deployment mongo-depl --image=mongo
+   52  kubectl get deployment
+   53  kubectl logs mongo-depl
+   54  kubectl get pod
+   55  kubectl logs mongo-depl-85ddc6d66-s5lqg
+   56  clear
+   57  kubectl get pod
+   58  kubectl describe pod mongo-depl-85ddc6d66-s5lqg
+   59  clear
+   60  kubectl ecec -it mongo-depl-85ddc6d66-s5lqg -- bin/bash
+   61  kubectl exec -it mongo-depl-85ddc6d66-s5lqg -- bin/bash
+   62  kubectl get deployment
+   63  kubectl get pod
+   64  kubectl delete deployment mongo-depl
+   65  kubectl get pod
+   66  kubectl delete deployment nginx-depl
+   67  kubectl get pod
+   68  clear
+   69  history
+   70  kubectl get replicaset
+   71  kubectl apply -f nginx-deployment.yaml
+   72  touch nginx-deployment.yaml
+   73  nano nginx-deployment.yaml
+   74  kubectl apply -f nginx-deployment.yaml
+   75  kubectl get deployment
+   76  kubectl get pod
+   77  nano nginx-deployment.yaml
+   78  kubectl apply -f nginx-deployment.yaml
+   79  kubectl get deployment
+   80  kubectl get pod
+   81  kubectl delete deployment nginx-deployment
+   82  kubectl get deployment
+   83  kubectl get pod
+   84  kubectl get replicaset
+   85  clear
+   86  history
+   87  kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+   88  kubectl get deployment
+   89  kubectl get deployment metrics-server -n kube-system
+   
+
+
+
+   13  kubectl get pods
+   14  sudo apt update
+   15  sudo apt-get update
+   16  sudo apt upgrade
+   17  sudo apt-get upgrade
+   18  clear
+   19  kubectl get pods -n kube-system
+   20  kubectl run php-apache --images=k8s.gcr.io/hpa-example --request=cpu=200m --expose --port=80
+   21  kubectl get pods
+   22  kubectl get deployments
+   23  kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10 horizontalpodautoscaler.autoscaling/php-apache autoscaled
+   24  kubectl get resource
+   25  kubectl run -i --tty load-generator --image=busybox /bin/sh
+   26  kubectl get hpz -w
+   27  kubectl get hpa -w
+   28  kubectl describe node my-node
+   29  kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+   30  kubectl get hpa php-apache --watch
+   31  kubectl get deployment php-apache
+   32  kubectl get hpa php-apache --watch
+   33  kubectl get deployment php-apache
+   34  kubectl describe hpa cm-test
+   35  29  wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+   36  sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+   37  sudo apt update
+   38  sudo apt install grafana
+   39  sudo systemctl start grafana-server
+   40  sudo systemctl status grafana-server
+   36  sudo mkdir /etc/prometheus
+   37  sudo mkdir /var/lib/prometheus
+   38  wget https://github.com/prometheus/prometheus/releases/download/v2.0.0/
+   39  prometheus-2.0.0.linux-amd64.tar.gz
+   40  wget https://github.com/prometheus/prometheus/releases/download/v2.0.0/prometheus-2.0.0.linux-amd64.tar.gz
+   41  tar xvf prometheus-2.0.0.linux-amd64.tar.gz
+   42  sudo cp prometheus-2.0.0.linux-amd64/prometheus /usr/local/bin/
+   43  sudo cp prometheus-2.0.0.linux-amd64/promtool /usr/local/bin/
+   44  sudo chown prome:prome /usr/local/bin/prometheus
+   45  sudo chown prome:prome /usr/local/bin/promtool
+   46  sudo cp -r prometheus-2.0.0.linux-amd64/consoles /etc/prometheus
+   47  sudo cp -r prometheus-2.0.0.linux-amd64/console_libraries /etc/prometheus
+   48  sudo chown -R prome:prome /etc/prometheus/consoles
+   49  sudo chown -R prome:prome /etc/prometheus/console_libraries
+   50  sudo nano /etc/prometheus/prometheus.yml
+   51  sudo nano /etc/systemd/system/prometheus.service
+   52  sudo systemctl daemon-reload
+   53  sudo systemctl start prometheus
+   54  history
+
+
+
+
+    1  sudo apt-get update
+    2  sudo apt-get upgrade
+    3  sudo apt update
+    4  sudo apt upgrade
+    5  sudo apt autoremove
+    6  clear
+    7  sudo reboot
+    8  minikube start --vm-driver=docker
+    9  minikube status
+   10  kubectl get nodes
+   11  kubectl get services
+   12  kubectl get pod
+   13  exit
+   14  clear
+   15  ls
+   16  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+   17  echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+   18  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+   19  curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+   20  echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+   21  sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+   22  kubectl version --client
+   23  minikube kubectl -- get pods -A
+   24  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+   25  sudo install minikube-linux-amd64 /usr/local/bin/minikube
+   26  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+   27  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+   28  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   29  sudo apt-get update
+   30  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   31  systemctl status docker
+   32  sudo usermod -aG docker ubuntu && newgrp docker
+   33  exit
+   34  clear
+   35  ls
+   36  mkdir nodejs-api
+   37  ls
+   38  cd nodejs-api/
+   39  ls
+   40  nano node-pod.yml
+   41  kubectl create -f node-pod.yml
+   42  nano node-pod.yml
+   43  kubectl create -f node-pod.yml
+   44  kubectl create -f pod.yaml
+   45  kubectl get pods
+   46  kubectl delete pod node-pod.yml
+   47  kubectl delete pod node-pod
+   48*
+   49  kubectl describe pod nodeapp-deployment-6659bd567f-8ltwm
+   50  kubectl create -f node-pod.yml
+   51  kubectl get pods
+   52  kubectl describe pod nodeapp-deployment-6659bd567f-2xks9
+   53  clear
+   54  kubectl get pods
+  213  kubectl get all
+  214  ls
+  215  nano nodeje-k8s-deployment.yml
+  216  nano nodejs.yml
+  217  rm nodejs.yml
+  218  mv nodeje-k8s-deployment.yml nodejs-app.yml
+  219  ls
+  220  cd nodejs-api/
+  221  ls
+  222  rm * .
+  223  rm *
+  224  rm *
+  225  rm node-lb.yml node-pod.yml
+  226  ll
+  227  ls
+  228  cd ..
+  229  ls
+  230  mv nodejs-app.yml nodejs-api/
+  231  ls
+  232  cd nodejs-api/
+  233  ls
+  234  clear
+  235  kubectl create -f .
+  236  kubectl get all
+  237  kubectl describe pod pod/nodejs-app-85d9cc685d-xcrqn
+  238  kubectl describe pod nodejs-app-85d9cc685d-xcrqn
+  239  minikube ip
+  240  kubectl get all
+  241  kubectl describe service nodejs-app-service
+  242  curl 192.168.49.2:31858
+  243  curl 192.168.49.2:31858/hello_world
+  244  clear
+  245  ls
+  246  cd
+  247  ls
+  248  kubectl get all
+  249  kubectl delete deployment.apps/nodejs-app
+  250  kubectl get all
+  251  kubectl delete service/nodejs-app-service
+  252  kubectl get all
+  253  clear
+  254  history
+
+
+
+
+
+    1  sudo apt-get update
+    2  sudo apt-get upgrade
+    3  sudo apt update
+    4  sudo apt upgrade
+    5  sudo apt autoremove
+    6  clear
+    7  sudo reboot
+    8  minikube start --vm-driver=docker
+    9  minikube status
+   10  kubectl get nodes
+   11  kubectl get services
+   12  kubectl get pod
+   13  exit
+   14  clear
+   15  ls
+   16  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+   17  echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+   18  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+   19  curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+   20  echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+   21  sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+   22  kubectl version --client
+   23  minikube kubectl -- get pods -A
+   24  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+   25  sudo install minikube-linux-amd64 /usr/local/bin/minikube
+   26  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+   27  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+   28  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   29  sudo apt-get update
+   30  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   31  systemctl status docker
+   32  sudo usermod -aG docker ubuntu && newgrp docker
+   33  exit
+   34  clear
+   35  ls
+   36  mkdir nodejs-api
+   37  ls
+   38  cd nodejs-api/
+   39  ls
+   40  nano node-pod.yml
+   41  kubectl create -f node-pod.yml
+   42  nano node-pod.yml
+   43  kubectl create -f node-pod.yml
+   44  kubectl create -f pod.yaml
+   45  kubectl get pods
+   46  kubectl delete pod node-pod.yml
+   47  kubectl delete pod node-pod
+   48  *
+   49  kubectl describe pod nodeapp-deployment-6659bd567f-8ltwm
+   50  kubectl create -f node-pod.yml
+   51  kubectl get pods
+   52  kubectl describe pod nodeapp-deployment-6659bd567f-2xks9
+   53  clear
+   54  kubectl get pods
+   55  history
+   56  ls
+   57  nano node-lb.yml
+   58  kubectl get svc
+   59  kubectl get deployment
+   60  ls
+   61  kubectl apply -f node-lb.yml
+   62  nano node-lb.yml
+   63  kubectl apply -f node-lb.yml
+   64  kubectl get svc
+   65  minikube service nodejs-app-service
+   66  minikube status
+   67  minikube service nodejs-app-service
+   68  minikube service --help
+   69  minikube service -n nodejs-app-service
+   70  minikube service -n nodejs-app-service -all
+   71  minikube service -n nodejs-app-service --all
+   72  kubectl get svc
+   73  minikube service -n nodejs-app-service --all
+   74  history
+   75  clear
+   76  sudo minikube addons enable ingress
+   77  minikube addons enable ingress
+   78  kubectl get pods -n kube-system
+   79  ll
+   80  cd ..
+   81  ls
+   82  mkdir ingress
+   83  cd ingress/
+   84  ls
+   85  nano ingress.yml
+   86  kubectl apply -f ingress.yml
+   87  ls
+   88  kubectl get pods
+   89  kubectl get deployments
+   90  kubectl get pods
+   91  kubectl get ingress
+   92  cd
+   93  sudo nano /etc/hosts
+   94  kubectl get ingress
+   95  clear
+   96  history
+   97  kubectl cluster-info
+   98  kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+   99  kubectl get ns
+  100  kubectl -n kube-system get pods
+  101  kubectl get nodes
+  102  kubectl top node minikube
+  103  kubectl get pods
+  104  kubectl -n top pod nodeapp-deployment-6659bd567f-2xks9
+  105  kubectl -n develop top pod nodeapp-deployment-6659bd567f-2xks9
+  106  kubectl describe node nodeapp-deployment-6659bd567f-2xks9
+  107  kubectl describe node minikube
+  108  kubectl get pod -owide --all-namespaces
+  109  kubectl describe hpa
+  110  kubectl describe hpa nodeapp-deployment-6659bd567f-2xks9
+  111  kubectl edit hpa nodeapp-deployment-6659bd567f-2xks9
+
+    1  export RELEASE="2.2.1"
+    2  sudo useradd --no-create-home --shell /bin/false prometheus
+    3  sudo useradd --no-create-home --shell /bin/false node_exporter
+    4  sudo mkdir /etc/prometheus
+    5  sudo mkdir /var/lib/prometheus
+    6  sudo chown prometheus:prometheus /etc/prometheus
+    7  sudo chown prometheus:prometheus /var/lib/prometheus
+    8  cd /opt/
+    9  wget https://github.com/prometheus/prometheus/releases/download/v2.26.0/prometheus-2.26.0.linux-amd64.tar.gz
+   10  sha256sum prometheus-2.26.0.linux-amd64.tar.gz
+   11  tar -xvf prometheus-2.26.0.linux-amd64.tar.gz
+   12  ls
+   13  sudo cp /opt/prometheus-2.26.0.linux-amd64/prometheus /usr/local/bin/
+   14  sudo cp /opt/prometheus-2.26.0.linux-amd64/promtool /usr/local/bin/
+   15  sudo chown prometheus:prometheus /usr/local/bin/prometheus
+   16  sudo chown prometheus:prometheus /usr/local/bin/promtool
+   17  sudo cp -r /opt/prometheus-2.26.0.linux-amd64/consoles /etc/prometheus
+   18  sudo cp -r /opt/prometheus-2.26.0.linux-amd64/console_libraries /etc/prometheus
+   19  sudo cp -r /opt/prometheus-2.26.0.linux-amd64/prometheus.yml /etc/prometheus
+   20  sudo chown -R prometheus:prometheus /etc/prometheus/consoles
+   21  sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
+   22  sudo chown -R prometheus:prometheus /etc/prometheus/prometheus.yml
+   23  prometheus --version
+   24  promtool --version
+   25  cat /etc/prometheus/prometheus.yml
+   26  sudo -u prometheus /usr/local/bin/prometheus         --config.file /etc/prometheus/prometheus.yml         --storage.tsdb.path /var/lib/prometheus/         --web.console.templates=/etc/prometheus/consoles         --web.console.libraries=/etc/prometheus/console_libraries
+   27  sudo nano /etc/systemd/system/prometheus.service
+   28  sudo systemctl daemon-reload
+   29  sudo systemctl start prometheus
+   30  sudo systemctl enable prometheus
+   31  sudo systemctl status prometheus
+   32  sudo ufw allow 9090/tcp
+   33  wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add –
+   34  sudo apt install wget
+   35  wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add –
+   36  wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-get add –
+   37  sudo apt install software-properties-common
+   38  wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+   39  echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+   40  sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+   41  sudo apt update
+   42  sudo apt install grafana
+   43  sudo systemctl start grafana-server
+   44  sudo systemctl status grafana-server
+   45  sudo systemctl enable grafana-server
+   46  kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+
+  147  kubectl get pods
+  148  kubectl get deployments
+  149  sudo su -
+  150  kubectl get deployment metrics-server -n kube-system
+  151  cat /root/.ssh/id_rsa.pub
+  152  sudo su -
+  153  ssh-keygen
+  154  cat /home/ubuntu/.ssh/id_rsa
+  155  clear
+  156  kubectl get nodes
+  157  kubectl get svc
+  158  kubectl describe svc nodejs-app-service
+  159  exit
+  160  sudo su
+  161  clear
+  162  ll
+  163  cd .ssh
+  164  ls
+  165  nano authorized_keys
+  166  clear
+  167  exit
+  168  clear
+  169  ls
+  170  nano nodejs.yml
+  171  kubectl
+  172  kubectl top
+  173  kubectl top node
+  174  kubectl get nodes
+  175  kubectl get pods
+  176  kubectl top nodeapp-deployment
+  177  kubectl top -h nodeapp-deployment
+  178  kubectl top nodeapp-deployment -h
+  179  kubectl top nodeapp-deployment
+  180  kubectl top pod nodeapp-deployment
+  181  kubectl top pod nodeapp-deployment-6659bd567f-2xks9
+  182  kubectl get svc -A -o wide
+  183  clear
+  184  ls
+  185  kubectl create -f nodejs.yml
+  186  nano nodejs.yml
+  187  kubectl create -f nodejs.yml
+  188  kubectl get pods
+  189  kubectl delete pod nodeapp-deployment-6659bd567f-2xks9
+  190  kubectl delete pod nodejs-app-deployment-6659bd567f-rrf96
+  191  kubectl get pods
+  192  kubectl get events
+  193  clear
+  194  kubectl get deployment
+  195  kubectl get deployments --all-namespaces
+  196  kubectl delete -n default deployment  nodeapp-deployment
+  197  kubectl get deployments --all-namespaces
+  198  kubectl delete -n default deployment  nodejs-app-deployment
+  199  kubectl get deployments --all-namespaces
+  200  kubectl get jobs
+  201  ls
+  202  kubectl get pods
+  203  kubectl create -f nodejs.yml
+  204  kubectl get pods
+  205  kubectl get services
+  206  kubectl get deployments --all-namespaces
+  207  kubectl delete -n default deployment  nodejs-app-deployment
+  208  kubectl delete service nodejs-app-service
+  209  kubectl get deployments --all-namespaces
+  210  kubectl get services
+  211  kubectl get nodejs-app-deployment -o wide
+  212  history
+  263  kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/high-availability.yaml
+  264  docker run --rm k8s.gcr.io/metrics-server/metrics-server:v0.6.0 --help
+  265  metrics-server:v0.6.0 --help
+  266  docker run --rm k8s.gcr.io/metrics-server/metrics-server:v0.6.0 --help
+  267  clear
+  268  kubectl get pods
+  269  kubectl get all
+  270  kubectl logs deployment/metrics-server -n kube-system
+  271  minikube addons list | grep metrics-server
+  272  minikube addons enable metrics-server
+  273  minikube addons list | grep metrics-server
+  274  kubectl get pods --namespace kube-system | grep metrics-server
+  275  minikube addons list | grep metrics-server
+  276  minikube dashboard
+  277  minikube dashboard --url=true
+  278  kubectl proxy --address='0.0.0.0' --disable-filter=true
+  279  kubectl top node
+  280  kubectl describe node minikube
+  281  history
+  282  kubectl create deployment php-apache --image=k8s.gcr.io/hpa-example
+  283  kubectl patch deployment php-apache -p='{"spec":{"template":{"spec":{"containers":[{"name":"hpa-example","resources":{"requests":{"cpu":"200m"}}}]}}}}'
+  284  kubectl create service clusterip php-apache --tcp=80
+  285  kubectl autoscale deployment nodejs-app --min=1 --max=2
+  286  kubectl autoscale deployment nodejs-app --cpu-percent=50 --min=1 --max=2
+  287  kubectl get hpa
+  288  kubectl run --generator=run-pod/v1 -i --tty load-generator --image=busybox /bin/sh
+  289  while true; do wget -q -O- http://php-apache; done
+  290  kubectl get hpa -w
+  291  kubectl delete hpa,service,deployment php-apache
+  292  kubectl delete pod load-generator
+  293  clear
+  294  exit
+  295  history
+  296  kubectl describe node
+  281  kubectl describe node minikube
+  282  kubectl get hpa
+  283  kubectl describe node
+  284  clear
+  285  history
+  286  clear
+  287  kubectl get ns
+  288  chmod 700 get_helm.sh
+  289  ./get_helm.sh
+  290  kubectl create namespace prometheus
+  291  kubectl get ns
+  292  helm
+  293  helm repo add moniter
+  294  helm repo add moniter https://charts.helm.sh/stable
+  295  helm repo update
+  296  helm install prometheus monitor/prometheus-operator --namespace prometheus
+  297  kubectl get pods
+  298  kubectl get all
+  299  kubectl get secret
+  300  kubectl get secret prometheus-operator-token-cpm8l
+  301  kubectl get secret prometheus-operator-token-cpm8l -o yaml
+  302  echo "ZGVmYXVsdA==" | base64 --decode
+  303  clear
+  304  kubectl get ns
+  305  kubectl delete ns prometheus
+  306  kubectl get repo
+  307  clear
+  308  kubectl get all
+  309  clear
+  310  history
+
+

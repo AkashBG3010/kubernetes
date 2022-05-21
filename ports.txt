@@ -1,0 +1,11 @@
+jenkins
+http://34.230.86.111:8080
+
+grafana
+http://3.231.4.208:3000
+
+prometheus
+http://3.231.4.208:9090
+
+kubernetes dashboard
+http://3.231.4.208:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/workloads?namespace=default
